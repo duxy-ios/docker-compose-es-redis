@@ -1,0 +1,14 @@
+http.host: 0.0.0.0
+cluster.name: alice.es.test
+node.name: node1 
+node.master: false
+node.data: true
+#path.data: /data/elasticsearch/data
+path.data: /usr/share/elasticsearch/data
+path.logs: /usr/share/elasticsearch/logs 
+http.port: 7810
+transport.tcp.port: 7811
+# network.publish_host: 172.19.0.2
+discovery.zen.ping.unicast.hosts: ["ade-test.yiqundata.cn:9801","ade-test.yiqundata.cn:9811"]
+
+#bootstrap.mlockall: true #锁住内存。因为当jvm开始swapping时es的效率会降低，所以要保证它不swap，可以把ES_MIN_MEM和ES_MAX_MEM两个环境变量设置成同一个值，并且保证机器有足够的内存分配给es。同时也要允许elasticsearch的进程可以锁住内存

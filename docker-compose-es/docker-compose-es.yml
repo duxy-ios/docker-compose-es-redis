@@ -1,0 +1,64 @@
+version: '2'
+services:
+  alice.es-test:
+    image: elasticsearch:latest
+    container_name: es.test
+    restart: on-failure
+    # network_mode: host
+    working_dir: /data/elasticsearch
+    environment:
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512g -Xms512g"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    mem_limit: 1g
+    cap_add:
+      - IPC_LOCK
+    volumes:
+      - ./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - /data/es.test/data:/usr/share/elasticsearch/data
+      - /data/es.test/logs:/usr/share/elasticsearch/logs
+    ports:
+      - 7800:9800
+      - 7801:9801
+    # networks:
+    #   - esnet
+
+#   alice.es-test1:
+#     image: elasticsearch:latest
+#     container_name: es.test1
+#     restart: on-failure
+#     # network_mode: host
+#     working_dir: /data/elasticsearch
+#     environment:
+#       - bootstrap.memory_lock=true
+#       - "ES_JAVA_OPTS=-Xms1g -Xms1g"
+#       # - "discovery.zen.ping.unicast.hosts=alice.es-test"
+#     ulimits:
+#       memlock:
+#         soft: -1
+#         hard: -1
+#       nofile:
+#         soft: 65536
+#         hard: 65536
+#     mem_limit: 2g
+#     cap_add:
+#       - IPC_LOCK
+#     volumes:
+#       - ./elasticsearch1.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+#       - /data1/es.test.test/data:/usr/share/elasticsearch/data
+#       - /data1/es.test.test/logs:/usr/share/elasticsearch/logs
+#     ports:
+#       - 7810:9810
+#       - 7811:9811
+#     # networks:
+#     #   - esnet
+
+# networks:
+#   esnet:
+#     driver: bridge

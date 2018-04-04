@@ -1,0 +1,13 @@
+version: '2'
+services:
+    alice-redis-master:
+        image: cowpanda/alpine-redis:latest
+        container_name: alice-goods-redis-1
+        network_mode: bridge
+        restart: on-failure
+        mem_limit: 500m
+        ports:
+          - '34759:34759'
+        volumes:
+          - /etc/localtime:/etc/locatime:ro
+          - ./redis-test.conf:/usr/local/etc/redis/redis.conf #project antuo-redis
