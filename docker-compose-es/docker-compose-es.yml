@@ -24,8 +24,8 @@ services:
       - /data/es.test/data:/usr/share/elasticsearch/data
       - /data/es.test/logs:/usr/share/elasticsearch/logs
     ports:
-      - 7800:9800
-      - 7801:9801
+      - 9800:7800
+      - 9801:7801
     # networks:
     #   - esnet
 
@@ -54,8 +54,8 @@ services:
 #       - /data1/es.test.test/data:/usr/share/elasticsearch/data
 #       - /data1/es.test.test/logs:/usr/share/elasticsearch/logs
 #     ports:
-#       - 7810:9810
-#       - 7811:9811
+#       - 9810:7810
+#       - 9811:7811
 #     # networks:
 #     #   - esnet
 
